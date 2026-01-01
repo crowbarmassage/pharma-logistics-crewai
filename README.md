@@ -32,13 +32,14 @@ Develops actionable optimization strategies based on the analyst's findings, com
 pharma-logistics-crewai/
 ├── README.md
 ├── requirements.txt
+├── pyproject.toml
 ├── .env.example
 ├── .gitignore
 │
 ├── src/
 │   └── pharma_logistics/
 │       ├── __init__.py
-│       ├── main.py              # Entry point
+│       ├── main.py              # Entry point with CLI flags
 │       ├── crew.py              # Crew AI orchestration
 │       ├── models.py            # Pydantic data models
 │       ├── config/
@@ -48,13 +49,14 @@ pharma-logistics-crewai/
 │           └── sample_products.json
 │
 ├── notebooks/
-│   └── pharma_logistics_crew.ipynb
+│   └── pharma_logistics_crew.ipynb  # Colab-ready notebook
 │
 ├── outputs/                     # Generated reports
 │
 └── tests/
-    ├── test_models.py
-    └── test_crew.py
+    ├── test_setup.py            # Project structure validation
+    ├── test_models.py           # Pydantic model tests
+    └── test_config.py           # YAML config tests
 ```
 
 ---
@@ -70,15 +72,19 @@ pharma-logistics-crewai/
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/pharma-logistics-crewai.git
+git clone https://github.com/crowbarmassage/pharma-logistics-crewai.git
 cd pharma-logistics-crewai
 
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+# Create virtual environment (Python 3.10-3.13)
+python3.12 -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 
 # Install dependencies
+pip install --upgrade pip
 pip install -r requirements.txt
+
+# Install the package
+pip install -e .
 
 # Configure environment
 cp .env.example .env
@@ -88,9 +94,22 @@ cp .env.example .env
 ### Run
 
 ```bash
-cd src
+# Run with defaults (gpt-4o-mini, temperature 0.7)
 python -m pharma_logistics.main
+
+# Specify model and temperature
+python -m pharma_logistics.main --model gpt-4o --temperature 0.5
+
+# See all options
+python -m pharma_logistics.main --help
 ```
+
+**CLI Options:**
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--model` | `gpt-4o-mini` | OpenAI model to use |
+| `--temperature` | `0.7` | LLM temperature (0.0-1.0) |
 
 The optimization strategy report will be generated at `outputs/optimization_strategy.md`.
 
