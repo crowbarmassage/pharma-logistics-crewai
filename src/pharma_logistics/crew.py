@@ -3,10 +3,21 @@
 import os
 from pathlib import Path
 
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Crew, LLM, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
 from .models import PharmaceuticalProduct, format_products_for_crew
+
+
+def get_llm() -> LLM:
+    """Get configured LLM from environment variables."""
+    model = os.getenv("OPENAI_MODEL_NAME", "gpt-4o-mini")
+    temperature = float(os.getenv("OPENAI_TEMPERATURE", "0.7"))
+
+    return LLM(
+        model=model,
+        temperature=temperature,
+    )
 
 
 @CrewBase
@@ -27,12 +38,14 @@ class PharmaLogisticsCrew:
         base_path = Path(__file__).parent
         self.agents_config = str(base_path / "config" / "agents.yaml")
         self.tasks_config = str(base_path / "config" / "tasks.yaml")
+        self._llm = get_llm()
 
     @agent
     def logistics_analyst(self) -> Agent:
         """Create the Logistics Analyst agent."""
         return Agent(
             config=self.agents_config["logistics_analyst"],
+            llm=self._llm,
             verbose=True,
             allow_delegation=False,
         )
@@ -42,6 +55,7 @@ class PharmaLogisticsCrew:
         """Create the Optimization Strategist agent."""
         return Agent(
             config=self.agents_config["optimization_strategist"],
+            llm=self._llm,
             verbose=True,
             allow_delegation=False,
         )
