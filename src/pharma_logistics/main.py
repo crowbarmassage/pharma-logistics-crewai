@@ -1,5 +1,6 @@
 """Main entry point for pharmaceutical logistics optimization."""
 
+import argparse
 import json
 import os
 from pathlib import Path
@@ -21,8 +22,35 @@ def load_sample_products() -> List[PharmaceuticalProduct]:
     return [PharmaceuticalProduct(**item) for item in data]
 
 
+def parse_args():
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(
+        description="Pharmaceutical Logistics Optimization with CrewAI"
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="gpt-4o-mini",
+        help="OpenAI model to use (default: gpt-4o-mini)",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=0.7,
+        help="LLM temperature 0.0-1.0 (default: 0.7)",
+    )
+    return parser.parse_args()
+
+
 def main():
     """Run the pharmaceutical logistics optimization crew."""
+    # Parse command-line arguments
+    args = parse_args()
+
+    # Set model config from flags
+    os.environ["OPENAI_MODEL_NAME"] = args.model
+    os.environ["OPENAI_TEMPERATURE"] = str(args.temperature)
+
     # Load environment variables
     load_dotenv()
 
@@ -37,6 +65,7 @@ def main():
     print("=" * 60)
     print("Pharmaceutical Logistics Optimization Crew")
     print("=" * 60)
+    print(f"Model: {args.model} | Temperature: {args.temperature}")
     print()
 
     # Load sample products
