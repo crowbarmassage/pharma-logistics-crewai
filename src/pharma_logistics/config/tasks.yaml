@@ -1,0 +1,83 @@
+logistics_analysis_task:
+  description: >
+    Analyze the current delivery route operations for the following pharmaceutical
+    products: {products}
+
+    Your analysis must cover:
+    1. CURRENT STATE ASSESSMENT
+       - Map existing delivery routes and their characteristics
+       - Identify which products require cold chain handling
+       - Document current priority classifications and delivery windows
+
+    2. EFFICIENCY METRICS
+       - Estimate route utilization rates
+       - Identify redundant or overlapping delivery paths
+       - Assess vehicle capacity utilization
+
+    3. COMPLIANCE CONSIDERATIONS
+       - Cold chain maintenance risks on current routes
+       - Time-sensitive delivery window compliance
+       - Regulatory exposure points
+
+    4. BOTTLENECK IDENTIFICATION
+       - Geographic clustering inefficiencies
+       - Peak demand timing conflicts
+       - Priority tier conflicts (critical vs. routine)
+
+    Provide specific, data-informed observations that can be acted upon.
+  expected_output: >
+    A comprehensive logistics analysis report in markdown format containing:
+    - Executive summary of key findings
+    - Detailed current state assessment
+    - Quantified efficiency metrics (with estimates where exact data unavailable)
+    - Prioritized list of identified bottlenecks and inefficiencies
+    - Risk assessment for cold chain and compliance issues
+    - Clear handoff points for optimization strategy development
+  agent: logistics_analyst
+
+optimization_strategy_task:
+  description: >
+    Based on the logistics analysis provided, develop a comprehensive
+    optimization strategy for pharmaceutical delivery routes handling
+    the following products: {products}
+
+    Your strategy must address:
+    1. ROUTE RESTRUCTURING RECOMMENDATIONS
+       - Proposed route consolidations or splits
+       - Geographic clustering optimizations
+       - Hub-and-spoke vs. direct delivery trade-offs
+
+    2. PRIORITY-BASED SCHEDULING
+       - Critical medication prioritization protocols
+       - Delivery window optimization
+       - Buffer time allocations for high-priority items
+
+    3. COLD CHAIN OPTIMIZATION
+       - Temperature-controlled vehicle allocation
+       - Route sequencing for temperature-sensitive products
+       - Contingency protocols for cold chain breaks
+
+    4. IMPLEMENTATION ROADMAP
+       - Phased rollout plan (Quick wins → Medium-term → Long-term)
+       - Resource requirements
+       - Success metrics and KPIs
+
+    5. ROI PROJECTION
+       - Estimated cost savings
+       - Efficiency gains (time, fuel, vehicle utilization)
+       - Risk mitigation value
+
+    Be specific and actionable. Avoid generic recommendations.
+  expected_output: >
+    A detailed optimization strategy report in markdown format containing:
+    - Executive summary with top 3-5 recommendations
+    - Detailed route restructuring plan with rationale
+    - Priority-based scheduling matrix
+    - Cold chain optimization protocols
+    - 90-day implementation roadmap
+    - ROI projections with assumptions stated
+    - Success metrics and monitoring approach
+  agent: optimization_strategist
+  context:
+    - logistics_analysis_task
+  output_file: outputs/optimization_strategy.md

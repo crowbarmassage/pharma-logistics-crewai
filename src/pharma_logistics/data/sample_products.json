@@ -1,0 +1,74 @@
+[
+  {
+    "product_id": "INS-001",
+    "name": "Insulin Glargine",
+    "temperature_requirement": "refrigerated",
+    "priority_tier": "critical",
+    "destination_city": "Chicago",
+    "destination_facility": "Northwestern Memorial Hospital",
+    "quantity_units": 100,
+    "max_delivery_hours": 4,
+    "requires_signature": true,
+    "hazmat_classification": null
+  },
+  {
+    "product_id": "VAC-002",
+    "name": "COVID-19 Vaccine (Pfizer)",
+    "temperature_requirement": "frozen",
+    "priority_tier": "urgent",
+    "destination_city": "Chicago",
+    "destination_facility": "Rush University Medical Center",
+    "quantity_units": 500,
+    "max_delivery_hours": 8,
+    "requires_signature": true,
+    "hazmat_classification": null
+  },
+  {
+    "product_id": "CHM-003",
+    "name": "Doxorubicin Injection",
+    "temperature_requirement": "refrigerated",
+    "priority_tier": "urgent",
+    "destination_city": "Evanston",
+    "destination_facility": "NorthShore University HealthSystem",
+    "quantity_units": 25,
+    "max_delivery_hours": 12,
+    "requires_signature": true,
+    "hazmat_classification": "cytotoxic"
+  },
+  {
+    "product_id": "ABX-004",
+    "name": "Amoxicillin 500mg",
+    "temperature_requirement": "ambient",
+    "priority_tier": "standard",
+    "destination_city": "Oak Park",
+    "destination_facility": "Oak Park Family Medicine",
+    "quantity_units": 200,
+    "max_delivery_hours": null,
+    "requires_signature": false,
+    "hazmat_classification": null
+  },
+  {
+    "product_id": "VIT-005",
+    "name": "Vitamin D3 5000 IU",
+    "temperature_requirement": "ambient",
+    "priority_tier": "routine",
+    "destination_city": "Naperville",
+    "destination_facility": "Walgreens Pharmacy #1247",
+    "quantity_units": 1000,
+    "max_delivery_hours": null,
+    "requires_signature": false,
+    "hazmat_classification": null
+  },
+  {
+    "product_id": "EPI-006",
+    "name": "Epinephrine Auto-Injector",
+    "temperature_requirement": "controlled",
+    "priority_tier": "critical",
+    "destination_city": "Chicago",
+    "destination_facility": "AMITA Health Saint Joseph Hospital",
+    "quantity_units": 50,
+    "max_delivery_hours": 2,
+    "requires_signature": true,
+    "hazmat_classification": null
+  }
+]
